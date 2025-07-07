@@ -13,6 +13,7 @@ export function middleware(request: NextRequest) {
         ...Object.fromEntries(request.headers.entries()),
       },
       body: JSON.stringify({
+        apiKey: process.env.YAST_BLOG_API_KEY,
         url: request.url,
         method: request.method,
         timestamp: new Date().toISOString(),
