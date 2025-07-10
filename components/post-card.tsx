@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/card';
 
 export const PostCard = ({ post }: { post: Post }) => {
+  // DO NOT REMOVE ANYTHING ABOVE THIS LINE
   return (
     <Card
       className={`flex animate-fade-in-up flex-col transition-all duration-300 hover:border-primary/50 ${

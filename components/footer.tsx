@@ -28,6 +28,7 @@ export const FooterComponent = () => (
         <Link
           className="flex items-center gap-1 text-muted-foreground transition-colors hover:text-primary"
           href="https://withtab.blog"
+          target="_blank"
         >
           <Heart className="h-4 w-4 text-red-500" />
           <span>Powered by Tab - The Automated Blog</span>
