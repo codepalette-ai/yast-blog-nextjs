@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote-client/rsc';
 import { Suspense } from 'react';
 import { getPost, getPosts, getRecentPosts } from '@/app/actions/posts.actions';
-import { mdxComponents } from '@/app/components/mdx-components';
+import { mdxComponents } from '@/components/mdx-components';
 import { Badge } from '@/components/ui/badge';
 import {
   Breadcrumb,

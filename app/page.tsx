@@ -1,8 +1,8 @@
 import { Search } from 'lucide-react';
 import { getPosts } from '@/app/actions/posts.actions';
+import { PostCard } from '@/components/post-card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { PostCard } from './components/post-card';
 
 export default async function Page({
   searchParams,
