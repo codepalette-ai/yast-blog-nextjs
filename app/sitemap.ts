@@ -1,31 +1,20 @@
 import type { MetadataRoute } from 'next';
+import { getPosts } from '@/app/actions/posts.actions';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
-
-  const posts = await fetch(
-    `${process.env.YAST_BLOG_API_URL}/api/posts?limit=100`,
-    {
-      headers: {
-        'x-api-key': `Bearer ${process.env.YAST_BLOG_API_KEY}`,
-      },
-    }
-  );
-  const postsData = await posts.json();
+  const posts = await getPosts('', 100, 0);
 
   const postsUrls =
-    postsData?.data?.posts?.map(
-      (post: { slug: string; publishedAt: string }) => ({
-        url: `${baseUrl}/blog/${post.slug}`,
-        lastModified: new Date(post.publishedAt),
-        changeFrequency: 'weekly',
-        priority: 0.8,
-      })
-    ) || [];
+    posts?.map((post) => ({
+      url: `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/posts/${post.slug}`,
+      lastModified: new Date(post.publishedAt),
+      changeFrequency: 'weekly' as const,
+      priority: post.isFeatured ? 1 : 0.8,
+    })) || [];
 
   return [
     {
-      url: baseUrl,
+      url: `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 1,
