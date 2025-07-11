@@ -4,8 +4,8 @@ export function middleware(request: NextRequest) {
   // Forward the original request
   const response = NextResponse.next();
 
-  after(async () => {
-    await fetch(`${process.env.YAST_BLOG_API_URL}/api/logs`, {
+  after(() => {
+    fetch(`${process.env.YAST_BLOG_API_URL}/api/logs`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

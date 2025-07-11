@@ -1,5 +1,6 @@
 import { Newspaper } from 'lucide-react';
 import Link from 'next/link';
+import { ThemeSwitcher } from './theme-switcher';
 
 export const HeaderComponent = () => (
   <header className="sticky top-0 z-50 border-b bg-background/80 px-4 py-4 backdrop-blur-sm sm:px-6 lg:px-8">
@@ -28,6 +29,7 @@ export const HeaderComponent = () => (
           FAQ
         </Link>
       </nav>
+      <ThemeSwitcher />
     </div>
   </header>
 );

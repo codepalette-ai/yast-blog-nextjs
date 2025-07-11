@@ -9,7 +9,9 @@ export async function getPosts(
 ): Promise<Post[]> {
   try {
     let apiUrl = `${process.env.YAST_BLOG_API_URL}/api/posts?limit=${limit}&offset=${offset}`;
-    apiUrl += `&query=${query}`;
+    if (query) {
+      apiUrl += `&query=${query}`;
+    }
     const response = await fetch(apiUrl, {
       headers: {
         'x-api-key': `Bearer ${process.env.YAST_BLOG_API_KEY}`,
@@ -41,7 +43,7 @@ export async function getPost(slug: string): Promise<Post | null> {
     if (!response.ok) {
       return null;
     }
-    const data = (await response.json()) as { data: { post: Post } };
+    const data = await response.json();
     return data.data.post || null;
   } catch (error) {
     console.error('Error fetching post:', error);
